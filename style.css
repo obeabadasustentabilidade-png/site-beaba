@@ -531,11 +531,12 @@ header {
 }
 .partner-logo:hover img { filter: none; opacity: 1; }
 /* Logo branco (ex.: É Conosco): cinza em repouso, como os outros; ao passar o
-   mouse, a caixa ganha a cor da marca (style="--brand:...") e o logo fica branco. */
+   mouse, a caixa ganha a cor de fundo do site do parceiro (style="--brand:...")
+   e o logo aparece nas cores originais. */
 .partner-logo--white { transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease; }
 .partner-logo--white img { filter: brightness(0); opacity: 0.45; }
 .partner-logo--white:hover { background: var(--brand, var(--universo)); border-color: var(--brand, var(--universo)); }
-.partner-logo--white:hover img { filter: brightness(0) invert(1); opacity: 1; }
+.partner-logo--white:hover img { filter: drop-shadow(0 1px 1.5px rgba(0,0,0,.45)); opacity: 1; }   /* sombra leve para o branco aparecer no cinza */
 
 
 /* =========================================================================
