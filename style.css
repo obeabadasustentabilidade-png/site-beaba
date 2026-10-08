@@ -1,0 +1,735 @@
+/* =========================================================================
+   O BEABÁ DA SUSTENTABILIDADE — style.css
+   =========================================================================
+   Este arquivo é usado por TODAS as páginas. Está dividido em:
+
+     1. VARIÁVEIS ............... cores, cantos e sombras da marca
+     2. BASE .................... reset, fontes, utilitários
+     3. BOTÕES
+     4. CABEÇALHO E MENU
+     5. HERO .................... topo da home e das páginas internas
+     6. TÍTULOS DE SEÇÃO
+     7. SOBRE ................... cards, equipe, missão/visão/valores
+     8. EIXOS TEMÁTICOS
+     9. EPISÓDIOS ............... cards, filtros e player
+    10. CURSOS .................. destaque e cards de curso
+    11. SERVIÇOS
+    12. APOIE
+    13. PARCEIROS E CLIENTES
+    14. NA MÍDIA
+    15. CONTATO ............... botões de e-mail e WhatsApp
+    16. RODAPÉ
+    17. RECURSOS LIGA/DESLIGA ... esconde os cursos (ver script.js)
+    18. RESPONSIVO .............. ajustes para tablet e celular
+
+   Dica: para mudar uma cor do site inteiro, altere só a seção 1.
+   ========================================================================= */
+
+
+/* =========================================================================
+   1. VARIÁVEIS
+   ========================================================================= */
+:root {
+    /* Cores do manual da marca */
+    --universo: #003895;       /* azul escuro */
+    --planeta-azul: #0054ED;   /* azul vibrante */
+    --ceu: #137CD6;            /* azul claro */
+    --verde: #338F0F;          /* verde árvores */
+    --gold: #D4A017;           /* amarelo ESG */
+
+    /* Fundos */
+    --bg-page: #9EBDB0;        /* fundo sálvia da página */
+    --bg-light: #F9FAFB;       /* seções alternadas */
+    --bg-card: #FFFFFF;
+    --bg-footer: #003895;
+
+    /* Textos */
+    --text-main: #1F2937;
+    --text-light: #6B7280;
+    --ink-soft: #2F4A3F;       /* texto auxiliar sobre o fundo sálvia */
+    --ink-eyebrow: #1F5A44;    /* rótulos acima dos títulos */
+
+    /* Cantos arredondados */
+    --radius-btn: 50px;
+    --radius-card: 20px;
+    --radius-input: 12px;
+
+    /* Sombras */
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================================
+   2. BASE
+   ========================================================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 90px; }   /* links do menu não escondem o título atrás do cabeçalho fixo */
+
+body {
+    font-family: 'Red Hat Display', 'Century Gothic', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; transition: all 0.3s ease; }
+ul { list-style: none; }
+
+/* Utilitários */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-padding { padding: 100px 0; }
+.text-center { text-align: center; }
+.bg-light { background-color: var(--bg-light); }
+.bg-primary { background: var(--planeta-azul); }
+.w-100 { width: 100%; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+
+
+/* =========================================================================
+   3. BOTÕES
+   ========================================================================= */
+.btn-primary {
+    background-color: var(--planeta-azul);
+    color: white;
+    padding: 16px 32px;
+    border-radius: var(--radius-btn);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 84, 237, 0.3); }
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #E5E7EB;
+    color: var(--text-main);
+    padding: 14px 30px;
+    border-radius: var(--radius-btn);
+    font-weight: 700;
+    display: inline-block;
+}
+.btn-outline:hover { border-color: var(--planeta-azul); color: var(--planeta-azul); }
+
+/* Botão "apagado" (ex.: curso sem inscrição aberta) */
+.btn-outline.disabled { border-color: #E5E7EB; color: var(--text-light); background: #F9FAFB; }
+.btn-outline.disabled:hover { border-color: var(--planeta-azul); color: var(--planeta-azul); }
+
+/* Selo arredondado acima dos títulos (ex.: "NOVIDADE") */
+.badge-pill {
+    background: #E0E7FF;
+    color: var(--universo);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================================
+   4. CABEÇALHO E MENU
+   ========================================================================= */
+header {
+    background: rgba(255, 255, 255, 0.98);
+    height: 90px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #F3F4F6;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { height: 50px; width: auto; object-fit: contain; }
+
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.nav-links a:hover { color: var(--planeta-azul); }
+
+/* Botão "Contato" no menu */
+.btn-header {
+    background-color: var(--planeta-azul);
+    color: white !important;
+    padding: 10px 24px;
+    border-radius: var(--radius-btn);
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(0, 84, 237, 0.3);
+}
+.btn-header:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 84, 237, 0.5); }
+
+/* Botão "hambúrguer" (só aparece no celular — ver seção 18) */
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; width: 44px; height: 44px; flex-direction: column; justify-content: center; gap: 5px; }
+.nav-toggle span { display: block; height: 2.5px; width: 24px; background: var(--universo); border-radius: 2px; transition: 0.3s; }
+
+
+/* =========================================================================
+   5. HERO
+   ========================================================================= */
+
+/* 5.1 — Home */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: radial-gradient(circle at 80% 20%, #a6c5cc 0%, white 60%);
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: var(--universo);
+    font-weight: 900;
+    margin-bottom: 24px;
+}
+.hero p {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    max-width: 500px;
+}
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Logo flutuando */
+.hero-img-container {
+    display: flex;
+    justify-content: center;
+    animation: float 6s ease-in-out infinite;
+}
+.hero-img-container img {
+    max-width: 80%;
+    filter: drop-shadow(0 20px 40px rgba(0,56,149,0.15));
+}
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Seta "Saiba mais" piscando */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.scroll-indicator svg { margin-top: 8px; animation: bounce 2s infinite; }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(10px); }
+    60% { transform: translateY(5px); }
+}
+
+/* 5.2 — Páginas internas (Episódios, Na mídia, Cursos) */
+.page-hero { background: radial-gradient(circle at 80% 20%, #a6c5cc 0%, #fff 60%); padding: 70px 0 50px; text-align: center; }
+.page-hero h1 { font-size: 3rem; color: var(--universo); font-weight: 900; margin: 14px 0 16px; line-height: 1.1; }
+.page-hero p { color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+
+/* =========================================================================
+   6. TÍTULOS DE SEÇÃO
+   ========================================================================= */
+.section-eyebrow { display: block; color: var(--ink-eyebrow); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; font-weight: 700; }
+.section-title {
+    font-size: 2.5rem;
+    color: var(--universo);
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+
+/* =========================================================================
+   7. SOBRE
+   ========================================================================= */
+
+/* 7.1 — Quatro cards com ícone */
+.about-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; align-items: stretch; }
+.about-card {
+    background: var(--bg-card);
+    border: 1px solid #F3F4F6;
+    border-radius: var(--radius-card);
+    padding: 36px 28px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.about-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
+.about-card h3 { font-size: 1.18rem; color: var(--universo); font-weight: 700; margin-bottom: 10px; }
+.about-card p { color: var(--text-light); font-size: 0.95rem; margin: 0; }
+
+/* Ícone com degradê; a cor vem de style="--ic:..." no HTML */
+.about-icon {
+    width: 76px; height: 76px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 22px;
+    color: #fff;
+    background: linear-gradient(140deg, color-mix(in srgb, var(--ic) 78%, #fff), var(--ic) 55%, color-mix(in srgb, var(--ic) 70%, #001a40));
+    box-shadow: 0 12px 24px -8px color-mix(in srgb, var(--ic) 60%, transparent), inset 0 1px 0 rgba(255,255,255,.35);
+    margin-bottom: 22px;
+    transition: transform .35s ease;
+}
+.about-card:hover .about-icon { transform: translateY(-4px) rotate(-6deg); }
+
+/* 7.2 — Quem somos (foto/iniciais em imagens/equipe/) */
+.team-block { margin-top: 80px; }
+.team-title { font-size: 2rem; font-weight: 900; color: var(--universo); margin-top: 8px; }
+.team-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
+.team-card { display: flex; gap: 22px; align-items: flex-start; background: var(--bg-card); border: 1px solid #F3F4F6; border-radius: var(--radius-card); padding: 32px; box-shadow: var(--shadow-soft); }
+.team-card h4 { font-size: 1.25rem; font-weight: 800; color: var(--universo); margin-bottom: 10px; }
+.team-card p { color: var(--text-light); font-size: .95rem; line-height: 1.6; margin-bottom: 14px; text-wrap: pretty; }
+.team-avatar { width: 96px; height: 96px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.4rem; color: #fff; background: var(--av, var(--planeta-azul)); position: relative; overflow: hidden; }
+.team-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.team-link { font-weight: 700; color: var(--planeta-azul); font-size: .92rem; }
+
+/* 7.3 — Missão, visão e valores */
+.mvv-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; margin-top: 24px; }
+.mvv-card { background: var(--universo); color: #fff; border-radius: var(--radius-card); padding: 28px; }
+.mvv-card p { color: rgba(255,255,255,.88); font-size: .94rem; line-height: 1.6; }
+.mvv-label { display: block; font-size: .8rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+
+
+/* =========================================================================
+   8. EIXOS TEMÁTICOS (home) — a cor vem de style="--c:..." no HTML
+   ========================================================================= */
+.themes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.theme-chip-card {
+    display: flex; align-items: center; gap: 14px;
+    background: #fff; border: 1px solid #F3F4F6; border-left: 4px solid var(--c, var(--planeta-azul));
+    border-radius: 14px; padding: 18px 22px;
+    color: var(--universo); font-weight: 700; font-size: 0.98rem;
+    box-shadow: var(--shadow-soft); transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.theme-chip-card:hover { transform: translateX(4px); box-shadow: var(--shadow-hover); }
+.theme-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c, var(--planeta-azul)); flex-shrink: 0; }
+
+
+/* =========================================================================
+   9. EPISÓDIOS
+   ========================================================================= */
+
+/* 9.1 — Grade de cards (home e página Episódios) */
+.episodes-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; max-width: 100%; margin: 40px 0 0; }
+.episodes-state { grid-column: 1 / -1; text-align: center; color: var(--text-light); padding: 40px 0; }   /* "Carregando…" / "Nenhum episódio" */
+
+/* 9.2 — Card */
+.ep-card { background: var(--bg-card); border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid #F3F4F6; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.ep-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+
+/* Capa (miniatura do YouTube) com botão de play */
+.ep-thumb { position: relative; aspect-ratio: 16 / 9; background: #E5EBF2; cursor: pointer; overflow: hidden; }
+.ep-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.ep-thumb:hover img { transform: scale(1.05); }
+/* Capa colorida quando o episódio não tem YouTube */
+.ep-thumb.thumb-fallback {
+    background: linear-gradient(135deg, var(--cat, var(--planeta-azul)), color-mix(in srgb, var(--cat, var(--universo)) 55%, #001a40));
+    display: flex; align-items: center; justify-content: center;
+}
+.ep-thumb-mark { color: rgba(255,255,255,0.85); font-size: 2.4rem; }
+.ep-play { position: absolute; inset: 0; margin: auto; width: 60px; height: 60px; background: rgba(255,255,255,0.92); color: var(--planeta-azul); border-radius: 50%; display: flex; align-items: center; justify-content: center; padding-left: 4px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); transition: transform 0.25s ease, background 0.25s ease; }
+.ep-thumb:hover .ep-play { transform: scale(1.1); background: #fff; }
+/* Selo do tipo (Entrevista, Aula...) no canto da capa */
+.ep-type-badge {
+    position: absolute; top: 12px; left: 12px;
+    color: #fff; font-size: 0.7rem; font-weight: 700;
+    padding: 5px 12px; border-radius: 50px; letter-spacing: 0.4px;
+    text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+/* Textos do card */
+.ep-card-body { padding: 22px 22px 20px; display: flex; flex-direction: column; flex: 1; }
+.ep-card-cat {
+    display: block; font-size: 0.72rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+    line-height: 1.3;
+}
+.ep-card-title {
+    font-size: 1.06rem; color: var(--universo); font-weight: 700;
+    line-height: 1.3; margin-bottom: 10px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;   /* máx. 3 linhas */
+}
+.ep-card-meta { font-size: 0.82rem; color: var(--text-light); font-weight: 500; margin-bottom: 16px; }
+
+/* Rodapé do card: programa especial + atalhos YouTube/Spotify */
+.ep-card-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ep-program {
+    font-size: 0.7rem; font-weight: 700; color: var(--text-light);
+    background: #F3F4F6; padding: 4px 10px; border-radius: 50px;
+}
+.ep-card-actions { display: flex; gap: 10px; align-items: center; }
+.ep-mini-link { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; background: #F9FAFB; border: 1px solid #F0F1F3; transition: 0.25s; }
+.ep-mini-link:hover { background: #fff; box-shadow: var(--shadow-soft); transform: translateY(-2px); }
+
+/* 9.3 — Filtros (página Episódios) */
+.filter-block { display: flex; align-items: flex-start; gap: 18px; max-width: 1040px; margin: 0 auto 14px; }
+.filter-block .filter-label {
+    flex-shrink: 0; padding-top: 9px;
+    font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-light); width: 90px; text-align: right;
+}
+.ep-filters { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 1000px; margin: 36px auto 44px; }
+.filter-block .ep-filters { margin: 0; justify-content: flex-start; flex: 1; }
+
+/* Botão de filtro; a cor vem de style="--chip-color:..." */
+.ep-chip { --chip-color: var(--planeta-azul); display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #E5E7EB; color: var(--text-main); padding: 8px 16px; border-radius: var(--radius-btn); font-family: inherit; font-weight: 700; font-size: 0.84rem; cursor: pointer; transition: all 0.25s ease; }
+.ep-chip:hover { border-color: var(--chip-color); color: var(--chip-color); }
+.ep-chip.active { background: var(--chip-color); border-color: var(--chip-color); color: #fff; box-shadow: 0 6px 16px rgba(0, 84, 237, 0.18); }
+.ep-chip[data-filter="todos"].active { background: var(--universo); border-color: var(--universo); }
+.ep-chip:disabled { opacity: .38; cursor: not-allowed; }
+.ep-chip:disabled:hover { border-color: #E5E7EB; color: var(--text-main); }
+.ep-chip-count { font-size: .72rem; font-weight: 800; padding: 2px 7px; border-radius: 50px; background: rgba(0,0,0,.06); }
+.ep-chip.active .ep-chip-count { background: rgba(255,255,255,.25); }
+.ep-filters-program .ep-chip { background: #F4F7FB; }
+.ep-filters-program .ep-chip.active { background: var(--universo); border-color: var(--universo); color: #fff; }
+
+.ep-counter { text-align: center; color: var(--ink-soft); font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; }   /* "41 episódios" */
+.ep-reset { margin-left: 8px; background: none; border: none; color: var(--planeta-azul); font: inherit; font-weight: 700; cursor: pointer; text-decoration: underline; }
+
+/* 9.4 — Player (janela por cima da página) */
+.ep-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; }
+.ep-modal.open { display: flex; }
+.ep-modal-backdrop { position: absolute; inset: 0; background: rgba(0, 20, 55, 0.7); backdrop-filter: blur(4px); }
+.ep-modal-box { position: relative; width: min(820px, 100%); background: #fff; border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.4); animation: modalIn 0.3s ease; }
+@keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: none; } }
+.ep-modal-media.is-video { aspect-ratio: 16 / 9; background: #000; }                         /* YouTube */
+.ep-modal-media.is-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+.ep-modal-media.is-audio { background: #fff; padding: 0; }                                   /* Spotify */
+.ep-modal-media.is-audio iframe { width: 100%; height: 352px; border: 0; display: block; }
+.ep-modal-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; flex-wrap: wrap; }
+.ep-modal-title { font-weight: 700; color: var(--universo); font-size: 1.05rem; }
+.ep-modal-close { position: absolute; top: 12px; right: 14px; z-index: 3; width: 40px; height: 40px; border: none; border-radius: 50%; background: rgba(0,0,0,0.55); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; transition: 0.2s; }
+.ep-modal-close:hover { background: rgba(0,0,0,0.8); transform: rotate(90deg); }
+
+
+/* =========================================================================
+   10. CURSOS
+   ========================================================================= */
+
+/* 10.1 — Faixa azul de destaque (home, Episódios e Cursos) */
+.courses-highlight { background: linear-gradient(135deg, var(--universo), var(--planeta-azul)); border-radius: var(--radius-card); padding: 56px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; color: #fff; box-shadow: var(--shadow-hover); overflow: hidden; position: relative; }
+.courses-highlight::after { content: ''; position: absolute; right: -80px; top: -80px; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,0.08); }
+.courses-highlight .badge-pill { background: rgba(255,255,255,0.18); color: #fff; }
+.courses-highlight h2 { font-size: 2.4rem; line-height: 1.1; margin: 16px 0; font-weight: 900; color: #fff; }
+.courses-highlight p { color: rgba(255,255,255,0.85); font-size: 1.08rem; margin-bottom: 28px; max-width: 460px; }
+.courses-highlight .btn-primary { background: var(--gold); color: var(--universo); }
+.courses-highlight .btn-primary:hover { background: #f0c14b; box-shadow: 0 10px 25px rgba(0,0,0,0.25); }
+.courses-highlight-visual { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; }
+.ch-pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; font-weight: 600; backdrop-filter: blur(4px); }
+.ch-pill .ch-num { width: 38px; height: 38px; flex-shrink: 0; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+
+/* 10.2 — Cards de curso (cursos.html, gerados pelo script.js) */
+.courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 28px; margin-top: 50px; }
+.course-card { background: var(--bg-card); border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid #F3F4F6; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.course-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.course-cover { position: relative; aspect-ratio: 3 / 2; background: #E5EBF2; overflow: hidden; }
+.course-cover img { width: 100%; height: 100%; object-fit: cover; }
+.course-cover.cover-fallback { background: linear-gradient(135deg, var(--verde), var(--ceu)); }   /* sem capa */
+.course-status { position: absolute; top: 14px; left: 14px; font-size: 0.74rem; font-weight: 700; padding: 6px 14px; border-radius: 50px; color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.status-soon { background: #646363; }
+.status-open { background: var(--verde); }
+.status-live { background: var(--planeta-azul); }
+.course-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.course-meta { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.78rem; font-weight: 700; color: var(--planeta-azul); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.course-meta span:not(:last-child)::after { content: '\2022'; margin-left: 8px; color: #D1D5DB; }
+.course-title { font-size: 1.3rem; color: var(--universo); font-weight: 800; margin-bottom: 10px; line-height: 1.25; }
+.course-desc { color: var(--text-light); font-size: 0.95rem; margin-bottom: 24px; flex: 1; }
+
+
+/* =========================================================================
+   11. SERVIÇOS (fotos em imagens/servicos/)
+   ========================================================================= */
+.service-card {
+    display: flex; flex-direction: column;
+    background: var(--bg-card); border: 1px solid #F3F4F6;
+    border-radius: var(--radius-card); overflow: hidden;
+    box-shadow: var(--shadow-soft); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: inherit; text-decoration: none;
+}
+.service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+.service-img { aspect-ratio: 4 / 3; overflow: hidden; background: #E5EBF2; }
+.service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.service-card:hover .service-img img { transform: scale(1.05); }
+.service-body { padding: 26px 26px 28px; display: flex; flex-direction: column; flex: 1; }
+.service-body h3 { font-size: 1.3rem; color: var(--universo); font-weight: 800; margin-bottom: 10px; }
+.service-body p { color: var(--text-light); font-size: 0.96rem; margin-bottom: 18px; flex: 1; }
+.service-cta { font-weight: 700; color: var(--planeta-azul); font-size: 0.95rem; }
+
+
+/* =========================================================================
+   12. APOIE (faixa azul com Apoia.se e Catarse)
+   ========================================================================= */
+.support-band {
+    background: linear-gradient(135deg, var(--universo), var(--planeta-azul));
+    border-radius: var(--radius-card); padding: 60px;
+    color: #fff; box-shadow: var(--shadow-hover);
+    text-align: center;
+}
+.support-band h2 { font-size: 2.2rem; font-weight: 900; color: #fff; margin: 10px 0 16px; }
+.support-band p { color: rgba(255,255,255,0.88); font-size: 1.08rem; max-width: 560px; margin: 0 auto 30px; }
+.support-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-support {
+    display: inline-block; color: #fff; font-weight: 700;
+    padding: 15px 30px; border-radius: var(--radius-btn); font-size: 1rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-support:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.28); }
+
+
+/* =========================================================================
+   13. PARCEIROS E CLIENTES (logos em imagens/parceiros/ e imagens/clientes/)
+   ========================================================================= */
+.partners-block {
+    background: var(--bg-card); border: 1px solid #F3F4F6; border-radius: var(--radius-card);
+    padding: 40px; margin-top: 28px; box-shadow: var(--shadow-soft);
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 36px; align-items: center;
+}
+.partners-head h3 { font-size: 1.4rem; color: var(--universo); font-weight: 800; margin-bottom: 12px; }
+.partners-head p { color: var(--text-light); font-size: 0.98rem; line-height: 1.6; }
+/* Grade de logos: as caixas se dividem igualmente na linha (cabem 4 lado a lado).
+   Um logo novo entra sozinho na grade, sem precisar mexer no CSS. */
+.partners-logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; }
+
+/* Caixa de cada logo: cinza por padrão, colorido ao passar o mouse */
+.partner-logo {
+    display: flex; align-items: center; justify-content: center;
+    background: #fff; border: 1px solid #EEF0F3; border-radius: 14px;
+    height: 110px; padding: 18px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.partner-logo:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+.partner-logo img {
+    max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block;
+    filter: grayscale(1); opacity: 0.78; transition: filter 0.25s ease, opacity 0.25s ease;
+}
+.partner-logo:hover img { filter: none; opacity: 1; }
+/* Logo com letras brancas (ex.: É Conosco): caixa escura para o logo aparecer */
+.partner-logo--dark { background: var(--universo); border-color: var(--universo); }
+
+
+/* =========================================================================
+   14. NA MÍDIA
+   ========================================================================= */
+.media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.media-card {
+    display: flex; flex-direction: column;
+    background: var(--bg-card); border: 1px solid #F3F4F6;
+    border-radius: var(--radius-card); padding: 28px 26px;
+    box-shadow: var(--shadow-soft); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--planeta-azul);
+}
+.media-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.media-outlet { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--planeta-azul); margin-bottom: 12px; }
+.media-title { font-size: 1.08rem; font-weight: 700; color: var(--universo); line-height: 1.35; margin-bottom: 22px; flex: 1; }
+.media-link { font-size: 0.9rem; font-weight: 700; color: var(--text-light); transition: color 0.2s; }
+.media-card:hover .media-link { color: var(--planeta-azul); }
+
+
+/* =========================================================================
+   15. CONTATO (botões de e-mail e WhatsApp)
+   ========================================================================= */
+.grid-contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 60px; align-items: center; }
+
+/* 15.1 — Coluna de texto e redes sociais */
+.contact-social { display: flex; gap: 15px; align-items: center; }
+.social-linktree { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; }
+
+/* 15.2 — Cartão com os botões */
+.contact-card {
+    background: white;
+    padding: 32px;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-hover);
+    display: flex; flex-direction: column; gap: 14px;
+}
+.contact-btn {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 18px;
+    border: 1.5px solid #E5E7EB; border-radius: 16px;
+    color: var(--text-main);
+}
+.contact-btn:hover { border-color: var(--planeta-azul); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.contact-btn-text { display: flex; flex-direction: column; min-width: 0; overflow-wrap: anywhere; }
+.contact-btn-text strong { color: var(--universo); font-size: 1.05rem; }
+.contact-btn-text small { color: var(--text-light); font-size: 0.9rem; }
+.info-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1.2rem;
+}
+
+/* 15.3 — "Copiar endereço de e-mail" (para quem não tem app de e-mail) */
+.contact-copy { align-self: center; background: none; border: none; padding: 8px; font: inherit; font-size: 0.88rem; font-weight: 600; color: var(--planeta-azul); text-decoration: underline; cursor: pointer; }
+.contact-copy.copied { color: var(--verde); text-decoration: none; }
+
+
+/* =========================================================================
+   16. RODAPÉ
+   ========================================================================= */
+footer {
+    background-color: var(--bg-footer);
+    color: white;
+    padding: 80px 0 20px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+.footer-logo {
+    height: 70px;
+    width: auto;
+    filter: brightness(0) invert(1);   /* deixa o logo branco */
+    margin-bottom: 20px;
+}
+.footer-col h4 { font-size: 1.1rem; margin-bottom: 24px; font-weight: 700; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+.footer-links a:hover { color: white; text-decoration: underline; }
+.copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+}
+
+
+/* =========================================================================
+   17. RECURSOS LIGA/DESLIGA
+   -------------------------------------------------------------------------
+   Tudo com data-feature="cursos" fica escondido enquanto FEATURES.cursos
+   for false no script.js. A página cursos.html fica invisível até ser
+   redirecionada para a home.
+   ========================================================================= */
+html:not(.feat-cursos) [data-feature="cursos"] { display: none !important; }
+html[data-feature="cursos"]:not(.feat-cursos) body { visibility: hidden; }
+
+
+/* =========================================================================
+   18. RESPONSIVO (do maior para o menor)
+   ========================================================================= */
+
+/* Telas baixas ou estreitas: esconde a seta "Saiba mais" */
+@media (max-width: 1000px), (max-height: 760px) {
+    .scroll-indicator { display: none; }
+}
+
+/* Até 980px: cards do Sobre em 2 colunas */
+@media (max-width: 980px) {
+    .about-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Até 900px (tablet e celular): menu hambúrguer e colunas empilhadas */
+@media (max-width: 900px) {
+    /* Menu */
+    .nav-toggle { display: flex; }
+    .nav-links { display: none; position: absolute; top: 90px; left: 0; right: 0; background: #fff; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 24px 20px; box-shadow: 0 12px 24px rgba(0,0,0,0.08); border-bottom: 1px solid #F3F4F6; }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 12px 4px; font-size: 1rem; }
+    .nav-links .btn-header { text-align: center; margin-top: 8px; }
+
+    /* Hero */
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-text { text-align: center; }
+    .hero-buttons { justify-content: center; }
+    .hero-img-container { margin-bottom: 40px; order: -1; }
+    .hero h1 { font-size: 2.5rem; }
+    .page-hero h1 { font-size: 2.2rem; }
+
+    /* Seções */
+    .team-grid, .mvv-grid { grid-template-columns: 1fr; }
+    .team-card { flex-direction: column; padding: 26px; }
+    .courses-highlight { grid-template-columns: 1fr; padding: 36px; }
+    .courses-highlight h2 { font-size: 2rem; }
+    .media-grid { grid-template-columns: 1fr; }
+    .grid-contact { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .footer-logo { margin: 0 auto 20px auto; }
+}
+
+/* Até 820px: parceiros e Apoie mais compactos */
+@media (max-width: 820px) {
+    .partners-block { grid-template-columns: 1fr; padding: 30px; gap: 22px; }
+    .partner-logo { height: 100px; padding: 16px; }
+    .support-band { padding: 40px 28px; }
+    .support-band h2 { font-size: 1.7rem; }
+}
+
+/* Até 700px: rótulos dos filtros acima dos botões */
+@media (max-width: 700px) {
+    .filter-block { flex-direction: column; gap: 8px; }
+    .filter-block .filter-label { width: auto; text-align: left; padding-top: 0; }
+    /* Botões de filtro numa faixa única que desliza para o lado */
+    .filter-block { margin-bottom: 18px; align-items: stretch; }
+    .filter-block .ep-filters {
+        max-width: none; min-width: 0;
+        flex-wrap: nowrap; justify-content: flex-start; gap: 8px;
+        overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-left: 16px; -webkit-overflow-scrolling: touch;
+        margin: 0 -16px; padding: 4px 16px 10px; scrollbar-width: none;
+    }
+    .filter-block .ep-filters::-webkit-scrollbar { display: none; }
+    .ep-chip { flex-shrink: 0; white-space: nowrap; scroll-snap-align: start; }
+}
+
+/* Até 560px (celular): cards do Sobre em 1 coluna */
+@media (max-width: 560px) {
+    .about-grid { grid-template-columns: 1fr; }
+}
+
+/* Até 480px (celular): títulos menores e menos espaço nas laterais */
+@media (max-width: 480px) {
+    .container { padding: 0 16px; }
+    .section-padding { padding: 64px 0; }
+    .hero { min-height: auto; padding: 40px 0 56px; }
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+    .hero-img-container img { max-width: 60%; }
+    .page-hero { padding: 48px 0 36px; }
+    .page-hero h1 { font-size: 1.9rem; }
+    .section-title { font-size: 1.9rem; }
+    .team-title { font-size: 1.6rem; }
+    .courses-highlight { padding: 28px 22px; }
+    .courses-highlight h2 { font-size: 1.7rem; }
+    .support-band { padding: 36px 20px; }
+    .partners-block { padding: 24px 18px; }
+    .partners-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .partner-logo { height: 90px; padding: 14px; }
+    .contact-card { padding: 20px 16px; }
+    .contact-btn { padding: 14px; gap: 12px; }
+    /* Grades com largura mínima (300px+) viram 1 coluna que cabe em qualquer celular */
+    .episodes-list, .grid-3, .courses-grid, .themes-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .ep-modal { padding: 12px; }
+    /* Links do rodapé com área de toque maior para o dedo */
+    .footer-links li { margin-bottom: 4px; }
+    .footer-links a, .team-link { display: inline-block; padding: 8px 0; }
+}

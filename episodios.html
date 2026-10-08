@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episódios · O Beabá da Sustentabilidade</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- =====================================================================
+         PÁGINA EPISÓDIOS (episodios.html)
+         Os cards e filtros são gerados pelo script.js a partir da planilha.
+         ===================================================================== -->
+
+    <!-- =====================================================================
+         1. CABEÇALHO E MENU — igual em todas as páginas (index, episodios, na-midia, cursos).
+         Ao mudar um link do menu, altere nas 4 páginas.
+         ===================================================================== -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html"><img src="imagens/marca/logo_obeabadasustentabilidade_horizontal_RGB.png" alt="O Beabá" class="logo"></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#temas">Eixos</a></li>
+                    <li><a href="episodios.html">Episódios</a></li>
+                    <li data-feature="cursos"><a href="cursos.html">Cursos</a></li>
+                    <li><a href="index.html#servicos">Serviços</a></li>
+                    <li><a href="index.html#apoie">Apoie</a></li>
+                    <li><a href="na-midia.html">Mídia</a></li>
+                    <li><a href="index.html#contato" class="btn-header">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- =====================================================================
+         2. TOPO DA PÁGINA
+         ===================================================================== -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="badge-pill">TODOS OS EPISÓDIOS</span>
+            <h1>Mais de 200 episódios, organizados por tema</h1>
+            <p>Filtre por eixo temático e dê play sem sair da página.</p>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         3. FILTROS E LISTA DE EPISÓDIOS — preenchidos automaticamente (não edite os <div> vazios)
+         ===================================================================== -->
+    <section class="section-padding" style="padding-top: 50px;">
+        <div class="container">
+            <div class="filter-block">
+                <span class="filter-label">Programa</span>
+                <div id="program-filters" class="ep-filters ep-filters-program"></div>
+            </div>
+            <div class="filter-block">
+                <span class="filter-label">Categoria</span>
+                <div id="episode-filters" class="ep-filters"></div>
+            </div>
+            <div id="episode-counter" class="ep-counter"></div>
+            <div id="full-episodes-list" class="episodes-list">
+                <div class="episodes-state">Carregando episódios…</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         4. DESTAQUE DE CURSOS — escondido até FEATURES.cursos = true (script.js)
+         ===================================================================== -->
+    <section class="section-padding bg-light" data-feature="cursos">
+        <div class="container">
+            <div class="courses-highlight">
+                <div class="courses-highlight-text">
+                    <span class="badge-pill">NOVIDADE</span>
+                    <h2>Quer ir além de ouvir?</h2>
+                    <p>Em breve, cursos do Beabá para aprofundar os temas do podcast de forma estruturada e prática.</p>
+                    <a href="cursos.html" class="btn-primary">Conheça os cursos</a>
+                </div>
+                <div class="courses-highlight-visual">
+                    <div class="ch-pill"><span class="ch-num">01</span> Introdução à Sustentabilidade na Prática</div>
+                    <div class="ch-pill"><span class="ch-num">02</span> ESG Descomplicado para Empresas</div>
+                    <div class="ch-pill"><span class="ch-num">03</span> Comunicação Ambiental sem Greenwashing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         5. RODAPÉ — igual em todas as páginas. Ao mudar, altere nas 4.
+         ===================================================================== -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <img src="imagens/marca/logo_obeabadasustentabilidade_vertical_RGB.png" alt="Logo" class="footer-logo">
+            </div>
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#temas">Eixos Temáticos</a></li>
+                    <li><a href="episodios.html">Episódios</a></li>
+                    <li data-feature="cursos"><a href="cursos.html">Cursos</a></li>
+                    <li><a href="index.html#servicos">Serviços</a></li>
+                    <li><a href="index.html#apoie">Apoie o Podcast</a></li>
+                    <li><a href="na-midia.html">Na mídia</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Siga-nos</h4>
+                <div style="display:flex; gap:15px; margin-top:10px;">
+                    <a href="https://www.instagram.com/beabadasustentabilidade/" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/instagram/white" width="24" alt="Instagram"></a>
+                    <a href="https://www.linkedin.com/company/72437499/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
+                    <a href="https://www.youtube.com/@beabadasustentabilidade2172" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/youtube/white" width="24" alt="YouTube"></a>
+                    <a href="https://open.spotify.com/show/54afJhCI91HoqSQYJPmqx0" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/spotify/white" width="24" alt="Spotify"></a>
+                    <a href="https://linktr.ee/O_Beaba_da_Sustentabilidade" target="_blank" rel="noopener" aria-label="Linktree"><svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M13.736 5.853l4.005-4.117 2.325 2.38-4.2 4.005h5.908v3.305h-5.937l4.229 4.108-2.325 2.334-5.741-5.769-5.741 5.769-2.325-2.334 4.229-4.108H2.226V8.121h5.909l-4.2-4.005 2.324-2.38 4.005 4.117V0h3.472zM10.264 18.965h3.472V24h-3.472z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center copyright">
+            © 2026 O Beabá da Sustentabilidade. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

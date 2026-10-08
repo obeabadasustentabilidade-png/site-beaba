@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opções de contraste — Beabá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --universo:#003895; --planeta:#0054ED; --ceu:#137CD6; --verde:#338F0F; --gold:#D4A017;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Red Hat Display',sans-serif;}
+  .opt{ padding:54px 56px; }
+  .eyebrow{ font-size:.82rem; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px; }
+  .title{ font-size:2.6rem; font-weight:900; line-height:1.05; letter-spacing:-1px; margin-bottom:18px; }
+  .lead{ font-size:1.05rem; margin-bottom:34px; max-width:90%; }
+  .info-item{ display:flex; align-items:center; gap:16px; margin-bottom:30px; }
+  .info-icon{ width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    font-size:1.4rem;color:#fff;flex-shrink:0; }
+  .info-label{ font-weight:800; font-size:1.02rem; display:block; margin-bottom:3px; }
+  .info-sub{ font-size:.96rem; }
+  .follow-h{ font-weight:800; font-size:1rem; margin-bottom:14px; }
+  .socials{ display:flex; gap:14px; align-items:center; }
+  .socials .s{ width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center; }
+  .socials svg{ width:24px;height:24px; }
+  .divider{ height:1px; margin:30px 0; }
+  .tag{ display:inline-block; font-size:.74rem; font-weight:800; letter-spacing:1px; text-transform:uppercase;
+    padding:7px 16px; border-radius:50px; margin-bottom:26px; }
+
+  /* ---------- A · Sálvia + tinta navy ---------- */
+  .A{ background:#9EBDB0; }
+  .A .eyebrow{ color:#1f5a44; }
+  .A .title{ color:var(--universo); }
+  .A .lead{ color:#2c4a3d; }
+  .A .info-icon{ background:var(--planeta); }
+  .A .info-label{ color:var(--universo); }
+  .A .info-sub{ color:#2c4a3d; }
+  .A .follow-h{ color:var(--universo); }
+  .A .tag{ background:rgba(0,56,149,.12); color:var(--universo); }
+  .A .divider{ background:rgba(0,40,90,.14); }
+  .A .s{ background:rgba(255,255,255,.55); }
+
+  /* ---------- B · Sálvia profundo + creme ---------- */
+  .B{ background:#46715F; }
+  .B .eyebrow{ color:#B9E0C9; }
+  .B .title{ color:#fff; }
+  .B .lead{ color:rgba(255,255,255,.82); }
+  .B .info-icon{ background:#fff; color:#46715F; }
+  .B .info-label{ color:#fff; }
+  .B .info-sub{ color:rgba(255,255,255,.8); }
+  .B .follow-h{ color:#fff; }
+  .B .tag{ background:rgba(255,255,255,.16); color:#fff; }
+  .B .divider{ background:rgba(255,255,255,.18); }
+  .B .s{ background:rgba(255,255,255,.14); }
+
+  /* ---------- C · Creme suave + ardósia ---------- */
+  .C{ background:#F4F1E8; }
+  .C .eyebrow{ color:var(--verde); }
+  .C .title{ color:var(--universo); }
+  .C .lead{ color:#55606b; }
+  .C .info-icon{ background:var(--planeta); }
+  .C .info-label{ color:var(--universo); }
+  .C .info-sub{ color:#55606b; }
+  .C .follow-h{ color:var(--universo); }
+  .C .tag{ background:rgba(51,143,15,.14); color:var(--verde); }
+  .C .divider{ background:rgba(0,0,0,.1); }
+  .C .s{ background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.06); }
+
+  /* ---------- D · Navy + sálvia clara ---------- */
+  .D{ background:var(--universo); }
+  .D .eyebrow{ color:var(--gold); }
+  .D .title{ color:#fff; }
+  .D .lead{ color:#B9CBE4; }
+  .D .info-icon{ background:var(--gold); color:var(--universo); }
+  .D .info-label{ color:#fff; }
+  .D .info-sub{ color:#B9CBE4; }
+  .D .follow-h{ color:#fff; }
+  .D .tag{ background:rgba(212,160,23,.18); color:var(--gold); }
+  .D .divider{ background:rgba(255,255,255,.16); }
+  .D .s{ background:rgba(255,255,255,.12); }
+
+  /* ---------- E · Sálvia + cartão branco ---------- */
+  .E{ background:#9EBDB0; padding:40px; }
+  .E .card{ background:#fff; border-radius:22px; padding:44px 46px; box-shadow:0 18px 40px rgba(0,40,30,.16); }
+  .E .eyebrow{ color:var(--verde); }
+  .E .title{ color:var(--universo); }
+  .E .lead{ color:#6B7280; }
+  .E .info-icon{ background:var(--planeta); }
+  .E .info-label{ color:var(--universo); }
+  .E .info-sub{ color:#6B7280; }
+  .E .follow-h{ color:var(--universo); }
+  .E .tag{ background:rgba(51,143,15,.12); color:var(--verde); }
+  .E .divider{ background:rgba(0,0,0,.08); }
+  .E .s{ background:#F3F6F4; }
+
+  .note{ font-size:.9rem; line-height:1.5; color:#54606b; padding:18px 20px; background:#fff;
+    border-radius:14px; border:1px solid #eee; }
+  .note b{ color:#003895; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+const { useEffect } = React;
+
+const IGico = <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.68A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zm0 10.16A4 4 0 1116 12a4 4 0 01-4 4zm6.4-10.4a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/></svg>;
+const LIico = <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 11 0-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>;
+const YTico = <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.12-2.12C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.53A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.12 2.12c1.88.53 9.38.53 9.38.53s7.5 0 9.38-.53a3 3 0 002.12-2.12A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.55 15.57V8.43L15.82 12z"/></svg>;
+const SPico = <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.5 17.3a.75.75 0 01-1.03.25c-2.82-1.72-6.37-2.11-10.55-1.16a.75.75 0 11-.33-1.46c4.57-1.04 8.5-.59 11.66 1.34.36.22.47.69.25 1.03zm1.47-3.27a.94.94 0 01-1.29.31c-3.23-1.98-8.15-2.56-11.97-1.4a.94.94 0 11-.55-1.8c4.37-1.32 9.79-.68 13.5 1.6.44.27.58.85.31 1.29zm.13-3.4C15.8 8.3 9.5 8.07 5.86 9.18a1.12 1.12 0 11-.65-2.15c4.18-1.27 11.13-1.02 15.5 1.58a1.12 1.12 0 01-1.15 1.93z"/></svg>;
+const LTico = <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.74 5.85l4-4.12 2.33 2.38-4.2 4.01h5.9v3.3h-5.93l4.23 4.11-2.33 2.33-5.74-5.77-5.74 5.77-2.33-2.33 4.23-4.11H2.23v-3.3h5.9l-4.2-4.01 2.33-2.38 4 4.12V0h3.47z"/></svg>;
+
+function Block({cls, wrapInner}){
+  const inner = (
+    <>
+      <span className="tag">Seção de contato</span>
+      <div className="eyebrow">Dizem por aí</div>
+      <h2 className="title">Vamos conversar?</h2>
+      <p className="lead">Quer participar do podcast ou sugerir um tema?</p>
+      <div className="info-item">
+        <div className="info-icon">✉</div>
+        <div>
+          <span className="info-label">Email</span>
+          <span className="info-sub">contato@obeabadasustentabilidade.com.br</span>
+        </div>
+      </div>
+      <div className="divider"></div>
+      <div className="follow-h">Siga nossas redes</div>
+      <div className="socials">
+        <span className="s" style={{color:'#E1306C'}}>{IGico}</span>
+        <span className="s" style={{color:'#0A66C2'}}>{LIico}</span>
+        <span className="s" style={{color:'#FF0000'}}>{YTico}</span>
+        <span className="s" style={{color:'#1DB954'}}>{SPico}</span>
+        <span className="s" style={{color:'#43E660'}}>{LTico}</span>
+      </div>
+    </>
+  );
+  return (
+    <div className={"opt "+cls}>
+      {wrapInner ? <div className="card">{inner}</div> : inner}
+    </div>
+  );
+}
+
+function App(){
+  return (
+    <DesignCanvas>
+      <DCSection id="sec" title="Contraste do texto" subtitle="Mesmo bloco, 5 tratamentos de fundo + cor de letra. Abra em tela cheia para comparar.">
+        <DCArtboard id="A" label="A · Sálvia + tinta navy" width={620} height={560}><Block cls="A"/></DCArtboard>
+        <DCArtboard id="B" label="B · Sálvia profundo + creme" width={620} height={560}><Block cls="B"/></DCArtboard>
+        <DCArtboard id="C" label="C · Creme suave + ardósia" width={620} height={560}><Block cls="C"/></DCArtboard>
+        <DCArtboard id="D" label="D · Navy + sálvia clara" width={620} height={560}><Block cls="D"/></DCArtboard>
+        <DCArtboard id="E" label="E · Sálvia + cartão branco" width={620} height={560}><Block cls="E" wrapInner/></DCArtboard>
+      </DCSection>
+      <DCSection id="guia" title="Como ler" subtitle="">
+        <DCArtboard id="n" label="Recomendação" width={620} height={260}>
+          <div style={{padding:'40px'}}>
+            <div className="note">
+              <p style={{marginBottom:'10px'}}><b>A</b> — mexe o mínimo: mantém o verde-sálvia e só escurece o texto auxiliar para um tom de tinta legível. Mais seguro.</p>
+              <p style={{marginBottom:'10px'}}><b>C</b> e <b>E</b> — trazem mais respiro e leitura confortável (creme ou cartão branco).</p>
+              <p><b>B</b> e <b>D</b> — mais dramáticos/premium, para dar destaque às seções de contato e CTA.</p>
+            </div>
+          </div>
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
